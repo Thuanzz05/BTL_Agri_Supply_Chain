@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using Microsoft.EntityFrameworkCore;
 
-namespace DaiLy_Agri_Supply_Chain.Models;
+namespace DailyAgriSupplyChain.DAL.Models;
 
 public partial class BtlHdv1Context : DbContext
 {

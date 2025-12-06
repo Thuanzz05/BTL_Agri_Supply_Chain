@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace DaiLy_Agri_Supply_Chain.Models;
+namespace DailyAgriSupplyChain.DAL.Models;
 
 public partial class DonHangSieuThi
 {
