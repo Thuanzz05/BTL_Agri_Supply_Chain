@@ -1,3 +1,6 @@
+using DailyAgriSupplyChain.DAL.Helper;
+using DailyAgriSupplyChain.DAL.Helper.Interfaces;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
