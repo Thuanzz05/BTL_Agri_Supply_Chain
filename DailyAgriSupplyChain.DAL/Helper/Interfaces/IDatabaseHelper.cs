@@ -1,49 +1,49 @@
 ﻿using System.Data;
 using System.Data.Common;
 using System.Threading.Tasks;
+using System.Collections.Generic;
+using Microsoft.Data.SqlClient; // Cần thiết để tham chiếu SqlConnection
 
 namespace DailyAgriSupplyChain.DAL.Helper.Interfaces
 {
+    // Đảm bảo class này được định nghĩa ở đâu đó trong namespace này
+    public class StoreParameterInfo
+    {
+        public string StoreProcedureName { get; set; } = null!;
+        public List<object> StoreProcedureParams { get; set; } = null!;
+    }
+
     public interface IDatabaseHelper
     {
+        // --- PHẦN ASYNC (MODERN) ---
 
-        // --- Hàm thực thi chung cho SQL/Stored Procedure ---
+        Task<int> ExecuteNonQueryAsync(string sql, CommandType commandType = CommandType.Text, DbParameter[] parameters = null);
+        Task<object?> ExecuteScalarAsync(string sql, CommandType commandType = CommandType.Text, DbParameter[] parameters = null);
+        Task<DataTable> ExecuteQueryToDataTableAsync(string sql, CommandType commandType = CommandType.Text, DbParameter[] parameters = null);
 
-        /// <summary>
-        /// Thực thi câu lệnh SQL/Stored Procedure không trả về tập dữ liệu (INSERT, UPDATE, DELETE).
-        /// </summary>
-        /// <returns>Số dòng bị ảnh hưởng.</returns>
-        Task<int> ExecuteNonQueryAsync(
-            string sql,
-            CommandType commandType = CommandType.Text,
-            DbParameter[] parameters = null);
+        // --- PHẦN SYNC CƠ BẢN (TRADITIONAL) ---
 
-        /// <summary>
-        /// Thực thi câu lệnh SQL/Stored Procedure trả về giá trị đơn lẻ (COUNT, MAX).
-        /// </summary>
-        /// <returns>Đối tượng giá trị trả về.</returns>
-        Task<object> ExecuteScalarAsync(
-            string sql,
-            CommandType commandType = CommandType.Text,
-            DbParameter[] parameters = null);
+        int ExecuteNonQuery(string sql, CommandType commandType = CommandType.Text, DbParameter[] parameters = null);
+        object? ExecuteScalar(string sql, CommandType commandType = CommandType.Text, DbParameter[] parameters = null);
+        DataTable ExecuteQueryToDataTable(string sql, out string msgError, CommandType commandType = CommandType.Text, DbParameter[] parameters = null); // Đổi tên để tránh xung đột
 
-        /// <summary>
-        /// Thực thi câu lệnh SQL/Stored Procedure trả về tập dữ liệu.
-        /// </summary>
-        /// <returns>DataTable chứa kết quả.</returns>
-        Task<DataTable> ExecuteQueryToDataTableAsync(
-            string sql,
-            CommandType commandType = CommandType.Text,
-            DbParameter[] parameters = null);
+        // --- HÀM SP PHỨC TẠP (PARAMS OBJECT[]) ---
+        string ExecuteSProcedure(string sprocedureName, params object[] paramObjects);
+        DataTable ExecuteSProcedureReturnDataTable(out string msgError, string sprocedureName, params object[] paramObjects);
+        DataSet? ExecuteSProcedureReturnDataset(out string msgError, string sprocedureName, params object[] paramObjects);
+        string ExecuteSProcedure(SqlConnection sqlConnection, string sprocedureName, params object[] paramObjects); // Hàm này yêu cầu SqlConnection
+        string ExecuteSProcedureWithTransaction(string sprocedureName, params object[] paramObjects);
+        object? ExecuteScalarSProcedure(out string msgError, string sprocedureName, params object[] paramObjects);
+        object? ExecuteScalarSProcedureWithTransaction(out string msgError, string sprocedureName, params object[] paramObjects);
+        List<object> ReturnValuesFromExecuteSProcedure(out string msgError, string sprocedureName, int outputParamCountNumber, params object[] paramObjects);
 
-        // --- Hàm hỗ trợ ---
+        // --- HÀM SP PHỨC TẠP (LIST<STOREPARAMETERINFO>) ---
+        List<string> ExecuteScalarSProcedure(List<StoreParameterInfo> storeParameterInfos);
+        List<string> ExecuteSProcedureWithTransaction(List<StoreParameterInfo> storeParameterInfos);
+        List<object?> ExecuteScalarSProcedure(out List<string> msgErrors, List<StoreParameterInfo> storeParameterInfos);
+        List<object?> ExecuteScalarSProcedureWithTransaction(out List<string> msgErrors, List<StoreParameterInfo> storeParameterInfos);
 
-        /// <summary>
-        /// Tạo một tham số DB an toàn cho câu lệnh SQL.
-        /// </summary>
-        DbParameter CreateParameter(string name, object value, DbType dbType);
-
-        // *Ghi chú: Để đơn giản hóa, các hàm xử lý Transaction phức tạp (như List<StoreParameterInfo>) 
-        // nên được xử lý trong Repository bằng cách inject DatabaseHelper và tự quản lý Transaction nếu cần.
+        // --- HÀM HỖ TRỢ ---
+        DbParameter CreateParameter(string name, object? value, DbType dbType);
     }
 }

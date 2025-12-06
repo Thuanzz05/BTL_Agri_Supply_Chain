@@ -1,137 +1,142 @@
-﻿
-using DailyAgriSupplyChain.DAL.Helper.Interfaces; 
+﻿// File: DailyAgriSupplyChain.DAL\DonHangDaiLyRepository.cs
+
 using DailyAgriSupplyChain.DAL.Interfaces;
-using DailyAgriSupplyChain.DAL.Models; // Chứa class DonHangDaiLy
+using DailyAgriSupplyChain.DAL.Models;
+using DailyAgriSupplyChain.DAL.Helper.Interfaces;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Data;
 using System.Data.Common;
-using System.Threading.Tasks;
 
 namespace DailyAgriSupplyChain.DAL
 {
-    public class DonHangDaiLyRepository : IDonHangDaiLyRepository
+    public partial class DonHangDaiLyRepository : IDonHangDaiLyRepository
     {
         private readonly IDatabaseHelper _dbHelper;
 
-        // DI: Nhận IDatabaseHelper qua constructor
         public DonHangDaiLyRepository(IDatabaseHelper dbHelper)
         {
             _dbHelper = dbHelper;
         }
 
-        // --- Hàm hỗ trợ Ánh xạ dữ liệu (Mapping) ---
+        // Hàm hỗ trợ ánh xạ 
+        private DonHangDaiLy MapDataRowToModel(DataRow row)
+        {
+            return new DonHangDaiLy
+            {
+                MaDonHang = Convert.ToInt32(row["MaDonHang"]),
+                MaDaiLy = Convert.ToInt32(row["MaDaiLy"]),
+                MaNongDan = Convert.ToInt32(row["MaNongDan"]),
+            };
+        }
+
         private List<DonHangDaiLy> MapDataTableToList(DataTable dt)
         {
-            var list = new List<DonHangDaiLy>();
-            if (dt == null || dt.Rows.Count == 0) return list;
+            if (dt == null || dt.Rows.Count == 0) return new List<DonHangDaiLy>();
+            return dt.AsEnumerable().Select(row => MapDataRowToModel(row)).ToList();
+        }
 
+        // --- TRIỂN KHAI CÁC PHƯƠNG THỨC ---
 
-            foreach (DataRow row in dt.Rows)
+        public bool Create(DonHangDaiLy model)
+        {
+            string msgError = "";
+            try
             {
-                list.Add(new DonHangDaiLy
+                var result = _dbHelper.ExecuteScalarSProcedureWithTransaction(out msgError, "sp_DonHangDaiLy_Create",
+                    "@MaDonHang", model.MaDonHang,
+                    "@MaDaiLy", model.MaDaiLy,
+                    "@MaNongDan", model.MaNongDan);
+
+                if (result != null && !string.IsNullOrEmpty(result.ToString()) || !string.IsNullOrEmpty(msgError))
                 {
-                    MaDonHang = Convert.ToInt32(row["MaDonHang"]),
-                    MaDaiLy = Convert.ToInt32(row["MaDaiLy"]),
-                    MaNongDan = Convert.ToInt32(row["MaNongDan"])
-                });
+                    throw new Exception("Lỗi DAL khi tạo đơn hàng: " + Convert.ToString(result) + msgError);
+                }
+                return true;
             }
-            return list;
+            catch (Exception) { throw; }
         }
 
-        // --- Triển khai các phương thức Repository ---
-
-        public async Task<List<DonHangDaiLy>> GetAllAsync()
+        public bool Update(DonHangDaiLy model)
         {
-            string storedProcedure = "sp_DonHangDaiLy_GetAll";
-
-            // Gọi DbHelper để thực thi Stored Procedure
-            var dt = await _dbHelper.ExecuteQueryToDataTableAsync(
-                storedProcedure,
-                CommandType.StoredProcedure);
-
-            return MapDataTableToList(dt);
-        }
-
-        public async Task<DonHangDaiLy> GetByIdAsync(int maDonHang)
-        {
-            string storedProcedure = "sp_DonHangDaiLy_GetById";
-            DbParameter[] parameters = new DbParameter[]
+            string msgError = "";
+            try
             {
-                _dbHelper.CreateParameter("@MaDonHang", maDonHang, DbType.Int32)
-            };
+                var result = _dbHelper.ExecuteScalarSProcedureWithTransaction(out msgError, "sp_DonHangDaiLy_Update",
+                    "@MaDonHang", model.MaDonHang,
+                    "@MaDaiLy", model.MaDaiLy,
+                    "@MaNongDan", model.MaNongDan);
 
-            var dt = await _dbHelper.ExecuteQueryToDataTableAsync(
-                storedProcedure,
-                CommandType.StoredProcedure,
-                parameters);
-
-            // Trả về phần tử đầu tiên (hoặc null nếu không tìm thấy)
-            return MapDataTableToList(dt).FirstOrDefault();
+                if (result != null && !string.IsNullOrEmpty(result.ToString()) || !string.IsNullOrEmpty(msgError))
+                {
+                    throw new Exception("Lỗi DAL khi cập nhật đơn hàng: " + Convert.ToString(result) + msgError);
+                }
+                return true;
+            }
+            catch (Exception) { throw; }
         }
 
-        public async Task<int> CreateAsync(DonHangDaiLy order)
+        public DonHangDaiLy? GetById(int maDonHang)
         {
-            string storedProcedure = "sp_DonHangDaiLy_Create";
-            DbParameter[] parameters = new DbParameter[]
+            string msgError = "";
+            try
             {
-                _dbHelper.CreateParameter("@MaDonHang", order.MaDonHang, DbType.Int32),
-                _dbHelper.CreateParameter("@MaDaiLy", order.MaDaiLy, DbType.Int32),
-                _dbHelper.CreateParameter("@MaNongDan", order.MaNongDan, DbType.Int32)
-            };
+                var dt = _dbHelper.ExecuteSProcedureReturnDataTable(out msgError, "sp_DonHangDaiLy_GetById",
+                    "@MaDonHang", maDonHang);
 
-            // ExecuteNonQueryAsync trả về số dòng bị ảnh hưởng (hoặc -1 nếu lỗi/không tìm thấy)
-            return await _dbHelper.ExecuteNonQueryAsync(
-                storedProcedure,
-                CommandType.StoredProcedure,
-                parameters);
+                if (!string.IsNullOrEmpty(msgError)) throw new Exception(msgError);
+
+                return MapDataTableToList(dt).FirstOrDefault();
+            }
+            catch (Exception) { throw; }
         }
 
-        public async Task<int> UpdateAsync(DonHangDaiLy order)
+        public bool Delete(int maDonHang)
         {
-            string storedProcedure = "sp_DonHangDaiLy_Update";
-            DbParameter[] parameters = new DbParameter[]
+            string msgError = "";
+            try
             {
-                _dbHelper.CreateParameter("@MaDonHang", order.MaDonHang, DbType.Int32),
-                _dbHelper.CreateParameter("@MaDaiLy", order.MaDaiLy, DbType.Int32),
-                _dbHelper.CreateParameter("@MaNongDan", order.MaNongDan, DbType.Int32)
-            };
+                var result = _dbHelper.ExecuteScalarSProcedureWithTransaction(out msgError, "sp_DonHangDaiLy_Delete",
+                    "@MaDonHang", maDonHang);
 
-            return await _dbHelper.ExecuteNonQueryAsync(
-                storedProcedure,
-                CommandType.StoredProcedure,
-                parameters);
+                if (result != null && !string.IsNullOrEmpty(result.ToString()) || !string.IsNullOrEmpty(msgError))
+                {
+                    throw new Exception("Lỗi DAL khi xóa đơn hàng: " + Convert.ToString(result) + msgError);
+                }
+                return true;
+            }
+            catch (Exception) { throw; }
         }
 
-        public async Task<int> DeleteAsync(int maDonHang)
+        public List<DonHangDaiLy> GetAll()
         {
-            string storedProcedure = "sp_DonHangDaiLy_Delete";
-            DbParameter[] parameters = new DbParameter[]
+            string msgError = "";
+            try
             {
-                _dbHelper.CreateParameter("@MaDonHang", maDonHang, DbType.Int32)
-            };
+                var dt = _dbHelper.ExecuteSProcedureReturnDataTable(out msgError, "sp_DonHangDaiLy_GetAll");
 
-            return await _dbHelper.ExecuteNonQueryAsync(
-                storedProcedure,
-                CommandType.StoredProcedure,
-                parameters);
+                if (!string.IsNullOrEmpty(msgError)) throw new Exception(msgError);
+
+                return MapDataTableToList(dt);
+            }
+            catch (Exception) { throw; }
         }
 
-        public async Task<List<DonHangDaiLy>> SearchAsync(string searchType, int searchId)
+        public List<DonHangDaiLy> Search(string searchType, int searchId)
         {
-            string storedProcedure = "sp_DonHangDaiLy_Search";
-            DbParameter[] parameters = new DbParameter[]
+            string msgError = "";
+            try
             {
-                _dbHelper.CreateParameter("@SearchType", searchType, DbType.String),
-                _dbHelper.CreateParameter("@SearchId", searchId, DbType.Int32)
-            };
+                var dt = _dbHelper.ExecuteSProcedureReturnDataTable(out msgError, "sp_DonHangDaiLy_Search",
+                    "@SearchType", searchType,
+                    "@SearchId", searchId);
 
-            var dt = await _dbHelper.ExecuteQueryToDataTableAsync(
-                storedProcedure,
-                CommandType.StoredProcedure,
-                parameters);
+                if (!string.IsNullOrEmpty(msgError)) throw new Exception(msgError);
 
-            return MapDataTableToList(dt);
+                return MapDataTableToList(dt);
+            }
+            catch (Exception) { throw; }
         }
     }
 }

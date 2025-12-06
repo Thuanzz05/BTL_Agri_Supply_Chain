@@ -1,5 +1,9 @@
-using DailyAgriSupplyChain.DAL.Helper;
+﻿using DailyAgriSupplyChain.DAL.Helper;
 using DailyAgriSupplyChain.DAL.Helper.Interfaces;
+using DailyAgriSupplyChain.DAL.Interfaces;
+using DailyAgriSupplyChain.DAL; // Giả sử DonHangDaiLyRepository nằm ở đây
+//using DailyAgriSupplyChain.BLL.Interfaces;
+//using DailyAgriSupplyChain.BLL.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
