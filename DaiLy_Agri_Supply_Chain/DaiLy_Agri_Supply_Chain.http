@@ -1,0 +1,6 @@
+@DaiLy_Agri_Supply_Chain_HostAddress = http://localhost:5073
+
+GET {{DaiLy_Agri_Supply_Chain_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
