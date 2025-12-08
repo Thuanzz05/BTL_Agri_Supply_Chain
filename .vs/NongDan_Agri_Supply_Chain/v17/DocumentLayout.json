@@ -1,0 +1,130 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "D:\\BTL_HDV\\API\\NongDan_Agri_Supply_Chain\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{37F5A8A9-4024-4346-9E17-09DAD5A99E14}|NongDan_Agri_Supply_Chain.DAL\\NongDan_Agri_Supply_Chain.DAL.csproj|d:\\btl_hdv\\api\\nongdan_agri_supply_chain\\nongdan_agri_supply_chain.dal\\class1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{37F5A8A9-4024-4346-9E17-09DAD5A99E14}|NongDan_Agri_Supply_Chain.DAL\\NongDan_Agri_Supply_Chain.DAL.csproj|solutionrelative:nongdan_agri_supply_chain.dal\\class1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{8B528196-2749-4AF6-A67F-5E56EDA353B1}|NongDan_Agri_Supply_Chain.BLL\\NongDan_Agri_Supply_Chain.BLL.csproj|d:\\btl_hdv\\api\\nongdan_agri_supply_chain\\nongdan_agri_supply_chain.bll\\class1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{8B528196-2749-4AF6-A67F-5E56EDA353B1}|NongDan_Agri_Supply_Chain.BLL\\NongDan_Agri_Supply_Chain.BLL.csproj|solutionrelative:nongdan_agri_supply_chain.bll\\class1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{5B5935E2-0E3C-4644-98DE-5F5488E24823}|NongDan_Agri_Supply_Chain\\NongDan_Agri_Supply_Chain.csproj|D:\\BTL_HDV\\API\\NongDan_Agri_Supply_Chain\\nongdan_agri_supply_chain\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
+      "RelativeMoniker": "D:0:0:{5B5935E2-0E3C-4644-98DE-5F5488E24823}|NongDan_Agri_Supply_Chain\\NongDan_Agri_Supply_Chain.csproj|solutionrelative:nongdan_agri_supply_chain\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{5B5935E2-0E3C-4644-98DE-5F5488E24823}|NongDan_Agri_Supply_Chain\\NongDan_Agri_Supply_Chain.csproj|D:\\BTL_HDV\\API\\NongDan_Agri_Supply_Chain\\nongdan_agri_supply_chain\\models\\sieuthi.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{5B5935E2-0E3C-4644-98DE-5F5488E24823}|NongDan_Agri_Supply_Chain\\NongDan_Agri_Supply_Chain.csproj|solutionrelative:nongdan_agri_supply_chain\\models\\sieuthi.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{5B5935E2-0E3C-4644-98DE-5F5488E24823}|NongDan_Agri_Supply_Chain\\NongDan_Agri_Supply_Chain.csproj|D:\\BTL_HDV\\API\\NongDan_Agri_Supply_Chain\\nongdan_agri_supply_chain\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{5B5935E2-0E3C-4644-98DE-5F5488E24823}|NongDan_Agri_Supply_Chain\\NongDan_Agri_Supply_Chain.csproj|solutionrelative:nongdan_agri_supply_chain\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 6,
+          "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{873151d0-cf2e-48cc-b4bf-ad0394f6a3c3}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:1:0:{d212f56b-c48a-434c-a121-1c5d80b59b9f}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{b1e99781-ab81-11d0-b683-00aa00a3ee26}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{eefa5220-e298-11d0-8f78-00a0c9110057}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{25f7e850-ffa1-11d0-b63f-00a0c922e851}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{3ae79031-e1bc-11d0-8f78-00a0c9110057}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "Class1.cs",
+              "DocumentMoniker": "D:\\BTL_HDV\\API\\NongDan_Agri_Supply_Chain\\NongDan_Agri_Supply_Chain.DAL\\Class1.cs",
+              "RelativeDocumentMoniker": "NongDan_Agri_Supply_Chain.DAL\\Class1.cs",
+              "ToolTip": "D:\\BTL_HDV\\API\\NongDan_Agri_Supply_Chain\\NongDan_Agri_Supply_Chain.DAL\\Class1.cs",
+              "RelativeToolTip": "NongDan_Agri_Supply_Chain.DAL\\Class1.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-12-08T05:40:09.807Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "Class1.cs",
+              "DocumentMoniker": "D:\\BTL_HDV\\API\\NongDan_Agri_Supply_Chain\\NongDan_Agri_Supply_Chain.BLL\\Class1.cs",
+              "RelativeDocumentMoniker": "NongDan_Agri_Supply_Chain.BLL\\Class1.cs",
+              "ToolTip": "D:\\BTL_HDV\\API\\NongDan_Agri_Supply_Chain\\NongDan_Agri_Supply_Chain.BLL\\Class1.cs",
+              "RelativeToolTip": "NongDan_Agri_Supply_Chain.BLL\\Class1.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-12-08T05:39:49.316Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{34e76e81-ee4a-11d0-ae2e-00a0c90fffc3}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "appsettings.json",
+              "DocumentMoniker": "D:\\BTL_HDV\\API\\NongDan_Agri_Supply_Chain\\NongDan_Agri_Supply_Chain\\appsettings.json",
+              "RelativeDocumentMoniker": "NongDan_Agri_Supply_Chain\\appsettings.json",
+              "ToolTip": "D:\\BTL_HDV\\API\\NongDan_Agri_Supply_Chain\\NongDan_Agri_Supply_Chain\\appsettings.json",
+              "RelativeToolTip": "NongDan_Agri_Supply_Chain\\appsettings.json",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAA0AAAABAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
+              "WhenOpened": "2025-12-05T09:22:00.659Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "SieuThi.cs",
+              "DocumentMoniker": "D:\\BTL_HDV\\API\\NongDan_Agri_Supply_Chain\\NongDan_Agri_Supply_Chain\\Models\\SieuThi.cs",
+              "RelativeDocumentMoniker": "NongDan_Agri_Supply_Chain\\Models\\SieuThi.cs",
+              "ToolTip": "D:\\BTL_HDV\\API\\NongDan_Agri_Supply_Chain\\NongDan_Agri_Supply_Chain\\Models\\SieuThi.cs",
+              "RelativeToolTip": "NongDan_Agri_Supply_Chain\\Models\\SieuThi.cs",
+              "ViewState": "AQIAAA0AAAAAAAAAAAA5wAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-12-05T09:21:16.324Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "Program.cs",
+              "DocumentMoniker": "D:\\BTL_HDV\\API\\NongDan_Agri_Supply_Chain\\NongDan_Agri_Supply_Chain\\Program.cs",
+              "RelativeDocumentMoniker": "NongDan_Agri_Supply_Chain\\Program.cs",
+              "ToolTip": "D:\\BTL_HDV\\API\\NongDan_Agri_Supply_Chain\\NongDan_Agri_Supply_Chain\\Program.cs",
+              "RelativeToolTip": "NongDan_Agri_Supply_Chain\\Program.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-12-05T09:12:11.699Z"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

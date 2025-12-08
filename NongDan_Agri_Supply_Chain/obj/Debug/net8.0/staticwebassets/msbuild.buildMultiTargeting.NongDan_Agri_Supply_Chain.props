@@ -1,0 +1,3 @@
+﻿<Project>
+  <Import Project="..\build\NongDan_Agri_Supply_Chain.props" />
+</Project>
